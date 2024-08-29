@@ -29,7 +29,7 @@ public class EcommerceApplication {
 					.build();
 			userRepository.save(johndoe);
 			User jhan = new User(null, "Jhan", "jhan@em.com", "eeeee", LocalDateTime.now(), LocalDateTime.now());
-			// UserRepository.save(jhan);
+			userRepository.save(jhan);
 
 		};
 }
