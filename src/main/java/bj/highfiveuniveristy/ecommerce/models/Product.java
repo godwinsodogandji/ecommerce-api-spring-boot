@@ -8,10 +8,11 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
-import jakarta.persistence.JoinColumns;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -35,9 +36,9 @@ public class Product {
     @Column(name = "stock_quantity")
     private Integer stockQty;
 
-    @Column(updatable = false)
-    private LocalDateTime created_at;
-    private LocalDateTime updated_at;
+    @Column(updatable = false , nullable = false)
+    private LocalDateTime createdAt;
+    private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "product")
     private List<OrderItem> orderItems;
@@ -50,4 +51,16 @@ public class Product {
     )
     // un produit peut appartenir à plusieurs catégorie
     private List<Category> categories;
+
+     //s'exécute quand on insère une donnée
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+    // s'exécute quand on modifie une donnée
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt= LocalDateTime.now();
+    }
 }

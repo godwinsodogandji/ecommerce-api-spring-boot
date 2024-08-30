@@ -3,14 +3,13 @@ package bj.highfiveuniveristy.ecommerce.models;
 import java.time.LocalDateTime;
 
 import jakarta.persistence.Column;
-import jakarta.persistence.Embedded;
 import jakarta.persistence.EmbeddedId;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.MapsId;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -37,8 +36,20 @@ public class OrderItem {
     @Column(nullable = false)
     private Integer quantity;
 
-    @Column(updatable = false)
-    private LocalDateTime created_at;
+    @Column(updatable = false ,nullable = false)
+    private LocalDateTime createdAt;
 
-    private LocalDateTime updated_at;
+    private LocalDateTime updatedAt;
+
+     //s'exécute quand on insère une donnée
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+    // s'exécute quand on modifie une donnée
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt= LocalDateTime.now();
+    }
 }

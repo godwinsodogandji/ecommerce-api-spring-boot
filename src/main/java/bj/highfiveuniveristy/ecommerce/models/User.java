@@ -8,6 +8,8 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
+import jakarta.persistence.PrePersist;
+import jakarta.persistence.PreUpdate;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -30,11 +32,22 @@ public class User {
     private String email;
     @Column(nullable = false)
     private String password;
-    @Column(updatable = false)
+    @Column(updatable = false , nullable = false)
     private LocalDateTime createdAt ;
     private LocalDateTime updatedAt;
 
     @OneToMany(mappedBy = "user")
     private List<Order> orders;
 
+        //s'exécute quand on insère une donnée
+    @PrePersist
+    protected void onCreate() {
+        createdAt = LocalDateTime.now();
+        updatedAt = LocalDateTime.now();
+    }
+    // s'exécute quand on modifie une donnée
+    @PreUpdate
+    protected void onUpdate() {
+        updatedAt= LocalDateTime.now();
+    }
 }
