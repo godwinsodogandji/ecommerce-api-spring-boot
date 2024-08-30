@@ -27,6 +27,6 @@ public class Category {
     @Column(nullable = false)
     private String name;
 
-    @ManyToMany()
+    @ManyToMany(mappedBy = "categories")
     private List<Product> products;
 }

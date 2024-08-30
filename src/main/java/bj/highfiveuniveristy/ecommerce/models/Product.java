@@ -7,6 +7,8 @@ import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.JoinColumns;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
@@ -41,7 +43,11 @@ public class Product {
     private List<OrderItem> orderItems;
 
     @ManyToMany
-    @JoinTable()
+    @JoinTable(
+            name = "category_product",
+            joinColumns = @JoinColumn(name="category_id"),
+            inverseJoinColumns = @JoinColumn(name= "product_id")
+    )
     // un produit peut appartenir à plusieurs catégorie
     private List<Category> categories;
 }
