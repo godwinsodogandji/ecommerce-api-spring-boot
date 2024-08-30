@@ -59,4 +59,4 @@
 `spring.jpa.hibernate.ddl-auto` :
 Cette propriété est utilisée pour spécifier la stratégie de génération du shéma de la BDD lors du démarrage de l'application.
 Hibernate, l'ORM utilisé par défaut dans Spring Boot, peut automatiquement créer, mettre à jour, valider ou gérer le schéma de la BDD
-en fonction de cette propriété.²&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&&
+en fonction de cette propriété.

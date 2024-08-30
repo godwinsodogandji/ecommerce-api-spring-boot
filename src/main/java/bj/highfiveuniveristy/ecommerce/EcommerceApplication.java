@@ -1,12 +1,17 @@
 package bj.highfiveuniveristy.ecommerce;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import bj.highfiveuniveristy.ecommerce.models.Order;
+import bj.highfiveuniveristy.ecommerce.models.OrderItem;
+import bj.highfiveuniveristy.ecommerce.models.OrderItemId;
+import bj.highfiveuniveristy.ecommerce.models.Product;
 import bj.highfiveuniveristy.ecommerce.models.User;
 import bj.highfiveuniveristy.ecommerce.repositories.UserRepository;
 
@@ -23,14 +28,14 @@ public class EcommerceApplication {
 			User johndoe= User.builder()
 				.email("johndoe@gmail.com")
 				.username("Jhon Doe")
-				.password("123")
+				.password("123") 
 				.createdAt(LocalDateTime.now())
 				.updatedAt(LocalDateTime.now())
 					.build();
 			userRepository.save(johndoe);
-			User jhan = new User(null, "Jhan", "jhan@em.com", "eeeee", LocalDateTime.now(), LocalDateTime.now());
+			User jhan = new User(null, "Jhan", "jhan@em.com", "eeeee", LocalDateTime.now(), LocalDateTime.now(),new ArrayList<>());
 			userRepository.save(jhan);
-
+			// OrderItem orderItem = new OrderItem"(1,)";
 		};
 }
 }
