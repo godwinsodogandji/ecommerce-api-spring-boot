@@ -16,19 +16,18 @@ public class ProductService {
         return productRepository.findAll();
     }
 
-    public Product getProductById( Long id) {
+    public Product getProductById(Long id) {
         Product product = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("aucun utilisateur trouvé"));
         return product;
     }
-
 
     public Product createProduct(Product product) {
         Product newProduct = productRepository.save(product);
         return newProduct;
     }
 
-    public Product updateProduct( Long id,Product product) {
+    public Product updateProduct(Long id, Product product) {
         Product productToUpdate = productRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("Product avec l'id " + id + " non trouvé"));
         productToUpdate.setName(product.getName());
@@ -37,7 +36,7 @@ public class ProductService {
         return productToUpdate;
     }
 
-    public void deleteProduct( Long id) {
+    public void deleteProduct(Long id) {
         productRepository.deleteById(id);
     }
 }

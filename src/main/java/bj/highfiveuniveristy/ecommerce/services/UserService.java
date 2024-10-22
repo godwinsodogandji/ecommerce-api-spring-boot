@@ -10,7 +10,7 @@ import bj.highfiveuniveristy.ecommerce.repositories.UserRepository;
 
 @Service
 public class UserService {
-     @Autowired
+    @Autowired
     private UserRepository userRepository;
 
     public List<User> getAllUsers() {
@@ -26,8 +26,8 @@ public class UserService {
         User newUser = userRepository.save(user);
         return newUser;
     }
-    
-    public User updateUser(Long id,  User user) {
+
+    public User updateUser(Long id, User user) {
         User userToUpdate = userRepository.findById(id)
                 .orElseThrow(() -> new RuntimeException("User avec l'id " + id + " non trouvé"));
         userToUpdate.setUsername(user.getUsername());
@@ -35,10 +35,9 @@ public class UserService {
         userToUpdate.setPassword(user.getPassword());
         return userToUpdate;
     }
-    
 
-    public void deleteUser( Long id) {
+    public void deleteUser(Long id) {
         userRepository.deleteById(id);
     }
-    
+
 }

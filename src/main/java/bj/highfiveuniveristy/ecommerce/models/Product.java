@@ -23,6 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Entity
 @Table(name="products")
+
 public class Product {
     @Id
     @GeneratedValue
